@@ -1,5 +1,9 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "git.ignoreLimitWarning": true,
-  "i18n-ally.localesPaths": ["public/locales", "src/shared/config/i18n"]
+  "eslint.codeActionsOnSave.rules": null,
+  "i18n-ally.localesPaths": [
+    "public/locales",
+    "src/shared/config/i18n"
+  ]
 }
