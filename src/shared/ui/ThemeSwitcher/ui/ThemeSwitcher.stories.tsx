@@ -24,6 +24,7 @@ export const Light: Story = {
 export const Dark: Story = {
     args: {
     },
+
     decorators: [
         (Story) => (
             <ThemeDecorator theme={Theme.DARK}>

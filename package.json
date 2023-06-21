@@ -4,16 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "unit": "jest --config ./config/jest/jest.config.ts",
     "start": "webpack serve --env port=3000",
-    "build:prod": "webpack --env mode=production",
-    "build:dev": "webpack --env mode=development",
+    "build:prod": "webpack  --env mode=production",
+    "build:dev": "webpack  --env mode=development",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
-    "lint:scss": "stylelint \"**/*.scss\"",
-    "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
-    "storybook": "storybook dev -p 6006 -c ./config/storybook",
-    "build-storybook": "storybook build -c ./config/storybook"
+    "lint:scss": "npx stylelint \"**/*.scss\"",
+    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "test:unit": "jest --config ./config/jest/jest.config.ts",
+    "test:ui": "npx loki test",
+    "test:ui:ok": "npx loki approve",
+    "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
+    "storybook": "start-storybook -p 6006 -c ./config/storybook",
+    "storybook:build": "build-storybook -c ./config/storybook"
   },
   "keywords": [],
   "author": "",
@@ -86,5 +89,18 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^12.3.1",
     "react-router-dom": "^6.11.2"
+  },
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.app",
+        "width": 1366,
+        "height": 768
+      },
+      "chrome.iphone7": {
+        "target": "chrome.app",
+        "preset": "iPhone 7"
+      }
+    }
   }
 }
