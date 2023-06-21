@@ -14,8 +14,8 @@
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "npx loki test",
     "test:ui:ok": "npx loki approve",
-    "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
-    "storybook": "start-storybook -p 6006 -c ./config/storybook",
+    "test:ui:ci": "npx loki --requireReference --reactPort 6006",
+    "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook"
   },
   "keywords": [],
@@ -91,6 +91,7 @@
     "react-router-dom": "^6.11.2"
   },
   "loki": {
+    
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.app",
