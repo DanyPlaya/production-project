@@ -7,24 +7,8 @@ import cls from './Navbar.module.scss';
 interface NavbarProps {
   className?: string;
 }
-export const Navbar = ({ className }: NavbarProps) => {
-    const { t } = useTranslation();
-
-    return (
-        <div className={classNames(cls.Navbar, {}, [className])}>
-            <div className={cls.links}>
-                <BugButton />
-                <AppLink
-                    theme={AppLinkTheme.SECONDARY}
-                    to="/"
-                    className={cls.mainLink}
-                >
-                    {t('Главная')}
-                </AppLink>
-                <AppLink theme={AppLinkTheme.SECONDARY} to="/about">
-                    {t('О сайте')}
-                </AppLink>
-            </div>
-        </div>
-    );
-};
+export const Navbar = ({ className }: NavbarProps) => (
+    <div className={classNames(cls.Navbar, {}, [className])}>
+        <div className={cls.links} />
+    </div>
+);
