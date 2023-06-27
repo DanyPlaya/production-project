@@ -226,3 +226,33 @@ export const SquareSizeXL: Story = {
         ),
     ],
 };
+export const ClearInverted: Story = {
+    args: {
+        children: '>',
+        theme: ButtonTheme.CLEAR_INVERTED,
+        square: true,
+        size: ButtonSize.XL,
+    },
+    decorators: [
+        (Story) => (
+            <ThemeDecorator theme={Theme.LIGHT}>
+                <Story />
+            </ThemeDecorator>
+        ),
+    ],
+};
+export const ClearInvertedDark: Story = {
+    args: {
+        children: '>',
+        theme: ButtonTheme.CLEAR_INVERTED,
+        square: true,
+        size: ButtonSize.XL,
+    },
+    decorators: [
+        (Story) => (
+            <ThemeDecorator theme={Theme.DARK}>
+                <Story />
+            </ThemeDecorator>
+        ),
+    ],
+};
