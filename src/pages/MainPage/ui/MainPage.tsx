@@ -5,7 +5,7 @@ const MainPage = () => {
     const { t } = useTranslation();
     return (
         <div>
-            <Counter />
+          
             {t('Главная страница')}
         </div>
     );
