@@ -36,7 +36,7 @@ export const Modal = (props: ModalProps) => {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
 
-        [cls[theme]]: true,
+        
 
     };
     const onKeyDown = useCallback((e:KeyboardEvent) => {
@@ -55,7 +55,7 @@ export const Modal = (props: ModalProps) => {
     }, [isOpen, onKeyDown]);
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className])}>
+            <div className={classNames(cls.Modal, mods, [className,theme])}>
                 <div onClick={closeHandler} className={cls.overlay}>
                     <div
                         className={cls.content}
