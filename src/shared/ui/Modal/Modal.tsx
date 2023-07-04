@@ -7,10 +7,10 @@ import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
 
 interface ModalProps {
-  className?: string;
-  children?: ReactNode;
-  isOpen?: boolean;
-  onClose?: ()=> void;
+    className?: string;
+    children?: ReactNode;
+    isOpen?: boolean;
+    onClose?: () => void;
 }
 const ANIMATION_DELAY = 300;
 export const Modal = (props: ModalProps) => {
@@ -18,7 +18,7 @@ export const Modal = (props: ModalProps) => {
         className, children, isOpen, onClose,
     } = props;
     const [isClosing, setIsClosing] = useState(false);
-    const timerRef = useRef <ReturnType<typeof setTimeout>>();
+    const timerRef = useRef<ReturnType<typeof setTimeout>>();
     const { theme } = useTheme();
     const closeHandler = useCallback(() => {
         if (onClose) {
@@ -29,14 +29,14 @@ export const Modal = (props: ModalProps) => {
             }, ANIMATION_DELAY);
         }
     }, [onClose]);
-    const onContentClick = (e:React.MouseEvent) => {
+    const onContentClick = (e: React.MouseEvent) => {
         e.stopPropagation();
     };
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };
-    const onKeyDown = useCallback((e:KeyboardEvent) => {
+    const onKeyDown = useCallback((e: KeyboardEvent) => {
         if (e.key === 'Escape') {
             closeHandler();
         }
