@@ -1,11 +1,11 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "git.ignoreLimitWarning": true,
- 
   "i18n-ally.localesPaths": [
     "public/locales",
     "src/shared/config/i18n"
   ],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.defaultNamespace": "translation"
+  "i18n-ally.defaultNamespace": "translation",
+  "i18n-ally.sourceLanguage": "en"
 }

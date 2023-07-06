@@ -14,7 +14,7 @@ export function useTheme(): UseThemeResult {
                 newTheme = Theme.DARK;
                 break;
             case Theme.LIGHT:
-                newTheme = Theme.DARK;
+                newTheme = Theme.LIGHT;
                 break;
             default:
                 newTheme = Theme.LIGHT;
@@ -23,5 +23,8 @@ export function useTheme(): UseThemeResult {
         document.body.className = newTheme;
         localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
     };
-    return { theme, toggleTheme };
+    return {
+        theme: theme || Theme.LIGHT,
+        toggleTheme,
+    };
 }
