@@ -256,3 +256,20 @@ export const ClearInvertedDark: Story = {
         ),
     ],
 };
+export const Disabled: Story = {
+    args: {
+        children: 'Войти',
+        theme: ButtonTheme.CLEAR_INVERTED,
+        square: true,
+        size: ButtonSize.XL,
+        disabled: true,
+
+    },
+    decorators: [
+        (Story) => (
+            <ThemeDecorator theme={Theme.DARK}>
+                <Story />
+            </ThemeDecorator>
+        ),
+    ],
+};

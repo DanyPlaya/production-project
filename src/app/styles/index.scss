@@ -4,7 +4,8 @@
 @import "themes/dark";
 
 
-body {
+.app,
+.app_modal {
     font: var(--font-m);
     color: var(--primary-color);
 }

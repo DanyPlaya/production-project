@@ -3,13 +3,13 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { getLoginState } from 'features/AuthByUsername/model/selectors/getLoginState/getLoginState';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { loginActions } from '../../model/slice/loginSlice';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
-import { getLoginUsername } from '../../model/selectors/getLoginState/getLoginUsername';
-import { getLoginPassword } from '../../model/selectors/getLoginState/getLoginPassword';
 import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
@@ -18,10 +18,12 @@ interface LoginFormProps {
 
 export const LoginForm = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
-    const { username, password } = useSelector(getLoginState);
+    const dispatch = useAppDispatch();
+    const {
+        username, password, isLoading, error,
+    } = useSelector(getLoginState);
     const onChangeUsername = useCallback((value: string) => {
-        dispatch(loginActions.setUsername());
+        dispatch(loginActions.setUsername(value));
     }, [dispatch]);
     const onChangePassword = useCallback((value: string) => {
         dispatch(loginActions.setPassword(value));
@@ -29,8 +31,15 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
     const onLoginClick = useCallback(() => {
         dispatch(loginByUsername({ username, password }));
     }, [dispatch, password, username]);
+
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
+            <Text title={t('Форма авторизации')} />
+            {error
+                && (
+                    <Text theme={TextTheme.ERROR} text={t('Вы ввели неверный логин или пароль')} />
+
+                )}
             <Input
                 autoFocus
                 onChange={onChangeUsername}
@@ -46,7 +55,7 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
                 value={password}
             />
 
-            <Button onClick={onLoginClick} theme={ButtonTheme.OUTLINE} className={cls.loginBtn}>
+            <Button disabled={isLoading} onClick={onLoginClick} theme={ButtonTheme.OUTLINE} className={cls.loginBtn}>
                 {t('Войти')}
             </Button>
         </div>
