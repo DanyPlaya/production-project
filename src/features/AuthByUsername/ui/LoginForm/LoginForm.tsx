@@ -1,20 +1,20 @@
 /* eslint-disable max-len */
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Input } from 'shared/ui/Input/Input';
-import { useSelector, useStore } from 'react-redux';
-import { memo, useCallback, useEffect } from 'react';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { getLoginUsername } from 'features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername';
 import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError';
 import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginPassword } from 'features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword';
+import { getLoginUsername } from 'features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername';
+import { memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { DyncamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DyncamicModuleLoader';
-import cls from './LoginForm.module.scss';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Input } from 'shared/ui/Input/Input';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
+import cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
     className?: string;
