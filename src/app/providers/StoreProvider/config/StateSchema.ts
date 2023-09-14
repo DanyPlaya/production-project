@@ -5,12 +5,16 @@ import {
     Reducer,
     ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
     user: UserSchema,
-    loginForm?: LoginSchema
+    loginForm?: LoginSchema,
+    profile?: ProfileSchema,
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 }
 export type StateSchemaKey = keyof StateSchema
 export type ReducerManager = {

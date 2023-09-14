@@ -4,6 +4,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { StringDecoder } from 'string_decoder';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+
 import LoginForm from './LoginForm';
 
 const meta = {
@@ -52,28 +53,33 @@ export const WithError: Story = {
     args: {
     },
     decorators: [
-        (Story) => (
-            <ThemeDecorator theme={Theme.DARK}>
-                <StoreDecorator state={{ loginForm: { username: 'Senez', password: 'Senez', error: 'ERROR' } }}>
-                    <Story />
-                </StoreDecorator>
-            </ThemeDecorator>
+        (Story) => {
+            return (
+                <ThemeDecorator theme={Theme.DARK}>
+                    <StoreDecorator state={{ loginForm: { username: 'Senez', password: 'Senez', error: 'Error' } }}>
+                        <Story />
+                    </StoreDecorator>
+                </ThemeDecorator>
+            );
+        },
 
-        ),
     ],
 };
+
 export const Loading: Story = {
     args: {
 
     },
     decorators: [
-        (Story) => (
-            <ThemeDecorator theme={Theme.DARK}>
-                <StoreDecorator state={{ loginForm: { isLoading: true } }}>
-                    <Story />
-                </StoreDecorator>
-            </ThemeDecorator>
+        (Story) => {
+            return (
+                <ThemeDecorator theme={Theme.DARK}>
+                    <StoreDecorator state={{ loginForm: { isLoading: true } }}>
+                        <Story />
+                    </StoreDecorator>
+                </ThemeDecorator>
+            );
+        },
 
-        ),
     ],
 };

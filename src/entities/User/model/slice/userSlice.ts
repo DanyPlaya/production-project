@@ -1,9 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
+import { loginApi } from 'features/AuthByUsername/model/services/loginByUsername/loginByUsername';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
-
+    authData: null,
 };
 
 export const userSlice = createSlice({
@@ -24,6 +25,12 @@ export const userSlice = createSlice({
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);
         },
 
+    },
+    extraReducers: (builder) => {
+        builder
+            .addMatcher(loginApi.endpoints.queryLogin.matchFulfilled, (state, action: PayloadAction<User>) => {
+                state.authData = action.payload;
+            });
     },
 });
 

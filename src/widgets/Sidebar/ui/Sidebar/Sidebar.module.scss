@@ -28,11 +28,6 @@
 
 }
 
-.link{
-    margin-left: 10px;
-    opacity: 1; 
-    
-}
 
 .collapseBtn{
     position: absolute;
@@ -40,16 +35,7 @@
     bottom: 32px;
 }
 
-.icon{
-    fill:var( --inverted-primary-color);
-    
-}
 
-.item{
-    display: flex;
-    align-items: center;
-    margin-top: 10px; 
-}
 
 .collapsed {
     width: var(--sidebar-width-collapsed);

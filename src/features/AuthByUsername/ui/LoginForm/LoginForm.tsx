@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
-import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError';
-import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading';
+
 import { getLoginPassword } from 'features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginUsername } from 'features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername';
 import { memo, useCallback } from 'react';
@@ -12,24 +11,28 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { useQueryLoginMutation } from 'features/AuthByUsername/model/services/loginByUsername/loginByUsername';
+import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
     className?: string;
+    onSuccess?: () => void
 }
 const initialReducers: ReducerList = {
     loginForm: loginReducer,
 };
-const LoginForm = memo(({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
-    const error = useSelector(getLoginError);
-    const isLoading = useSelector(getLoginIsLoading);
+    // const error = useSelector(getLoginError);
+    // const isLoading = useSelector(getLoginIsLoading);
+    const [login, {
+        isError, isLoading, status,
+    }] = useQueryLoginMutation();
 
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginActions.setUsername(value));
@@ -37,15 +40,23 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     const onChangePassword = useCallback((value: string) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }));
-    }, [dispatch, password, username]);
+    const onLoginClick = useCallback(async () => {
+        // dispatch(loginByUsername({ username, password }));
+
+        await login({
+            password,
+            username,
+        }).unwrap().then((result) => {
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(result));
+            onSuccess();
+        }).catch((error) => console.log(error));
+    }, [login, onSuccess, password, username]);
 
     return (
         <DyncamicModuleLoader removeAfterUnmount reducers={initialReducers}>
             <div className={classNames(cls.LoginForm, {}, [className])}>
                 <Text title={t('Форма авторизации')} />
-                {error
+                {isError
                     && (
                         <Text theme={TextTheme.ERROR} text={t('Вы ввели неверный логин или пароль')} />
 

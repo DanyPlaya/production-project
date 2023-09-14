@@ -1,7 +1,9 @@
 {
   "Enter Login": "Enter Login",
   "Enter password": "Enter password",
+  "ProfilePage": "ProfilePage",
   "throw Error": "throw Error",
+  "throw error": "throw error",
   "Введите логин": "Введите логин",
   "Введите пароль": "Введите пароль",
   "Войти": "Войти",

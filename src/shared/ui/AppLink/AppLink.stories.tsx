@@ -21,21 +21,21 @@ type Story = StoryObj<typeof meta>;
 export const PrimaryLight: Story = {
     args: {
         children: 'Text',
-        theme: AppLinkTheme.PRIMARY,
+        theme: 'primary',
     },
 
 };
 export const SecondaryDark: Story = {
     args: {
         children: 'Text',
-        theme: AppLinkTheme.SECONDARY,
+        theme: 'secondary',
     },
 
 };
 export const PrimaryDark: Story = {
     args: {
         children: 'Text',
-        theme: AppLinkTheme.PRIMARY,
+        theme: 'primary',
     },
     decorators: [
         (Story) => (
@@ -49,7 +49,7 @@ export const PrimaryDark: Story = {
 export const SecondaryLight: Story = {
     args: {
         children: 'Text',
-        theme: AppLinkTheme.SECONDARY,
+        theme: 'secondary',
     },
     decorators: [
         (Story) => (

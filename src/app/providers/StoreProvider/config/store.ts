@@ -1,6 +1,8 @@
 import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 
 import { userReducer } from 'entities/User';
+import { rtkApi } from 'shared/api/rtkApi';
+import { profileReducer } from 'entities/Profile';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -9,14 +11,17 @@ export function createReduxStore(
     asyncReducers?: ReducersMapObject<StateSchema>,
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
-        ...asyncReducers,
         user: userReducer,
+        profile: profileReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
+        ...asyncReducers,
     };
     const reducerManager = createReducerManager(rootReducers);
-    const store = configureStore<StateSchema>({
+    const store = configureStore({
         reducer: reducerManager.reduce,
         devTools: __IS_DEV__,
         preloadedState: initialState,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(rtkApi.middleware),
 
     });
     // @ts-ignore
