@@ -26,12 +26,12 @@ export const userSlice = createSlice({
         },
 
     },
-    extraReducers: (builder) => {
-        builder
-            .addMatcher(loginApi.endpoints.queryLogin.matchFulfilled, (state, action: PayloadAction<User>) => {
-                state.authData = action.payload;
-            });
-    },
+    // extraReducers: (builder) => {
+    //     builder
+    //         .addMatcher(loginApi.endpoints.queryLogin.matchFulfilled, (state, action: PayloadAction<User>) => {
+    //             state.authData = action.payload;
+    //         });
+    // },
 });
 
 export const { actions: userActions } = userSlice;

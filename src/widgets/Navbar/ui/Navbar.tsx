@@ -16,7 +16,7 @@ import cls from './Navbar.module.scss';
 interface NavbarProps {
     className?: string;
 }
-export const Navbar = memo(({ className }: NavbarProps) => {
+export const Navbar = ({ className }: NavbarProps) => {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = useState(false);
     const onCloseModal = useCallback(() => {
@@ -52,8 +52,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             >
                 {t('Войти')}
             </Button>
-            {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
-
+            {isAuthModal && (
+                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+            )}
         </div>
     );
-});
+};

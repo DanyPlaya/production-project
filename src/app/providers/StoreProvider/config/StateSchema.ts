@@ -8,6 +8,7 @@ import {
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
+import { NavigateOptions, To } from 'react-router-dom';
 import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
@@ -15,6 +16,9 @@ export interface StateSchema {
     loginForm?: LoginSchema,
     profile?: ProfileSchema,
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
+}
+export type ThunkExtraArg = {
+    navigate?: (to: To, options?: NavigateOptions) => void
 }
 export type StateSchemaKey = keyof StateSchema
 export type ReducerManager = {

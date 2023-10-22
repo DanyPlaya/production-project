@@ -1,3 +1,4 @@
+/* eslint-disable jsx-quotes */
 /* eslint-disable i18next/no-literal-string */
 import { classNames } from 'shared/lib/classNames/classNames';
 import { memo, useMemo, useState } from 'react';
@@ -13,7 +14,7 @@ import cls from './Sidebar.module.scss';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 interface SidebarProps {
-  className?: string;
+    className?: string;
 }
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
@@ -26,30 +27,30 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 
     return (
         <div
-            data-testid="Sidebar"
-            className={classNames(
-                cls.Sidebar,
-                { [cls.collapsed]: collapsed },
-                [className],
-            )}
+            data-testid='Sidebar'
+            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
+                className,
+            ])}
         >
-
             <div className={cls.items}>
-                { SidebarItemsList.map((item) => <SidebarItem key={item.path} collapsed={collapsed} item={item} />)}
-                {' '}
+                {SidebarItemsList.map((item) => (
+                    <SidebarItem
+                        key={item.path}
+                        collapsed={collapsed}
+                        item={item}
+                    />
+                ))}
             </div>
             <Button
-                data-testid="sidebar-toggle"
-                type="button"
+                data-testid='sidebar-toggle'
+                type='button'
                 onClick={onToggle}
                 className={cls.collapseBtn}
                 theme={ButtonTheme.BACKGROUND_INVERTED}
                 size={ButtonSize.L}
                 square
-
             >
                 {collapsed ? '>' : '<'}
-
             </Button>
             <div className={cls.switchers}>
                 <ThemeSwitcher />

@@ -1,25 +1,32 @@
-import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-
+/* eslint-disable react-hooks/rules-of-hooks */
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ThunkExtraArg } from 'app/providers/StoreProvider';
+import { LOCAL_STORAGE_THEME_KEY } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import axios from 'axios';
 import { User, userActions } from 'entities/User';
+import { useNavigate } from 'react-router-dom';
 import { rtkApi } from 'shared/api/rtkApi';
-import { loginActions } from '../../slice/loginSlice';
+import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 
 interface loginByUsernameProps {
     username: string;
     password: string;
 }
-// enum LoginErrors {
-//     INCORECT_DATA = '',
-//     SERVER_ERROR = '',
-// }
-// export const loginByUsername = createAsyncThunk<User, loginByUsernameProps, { rejectValue: string }>(
+// // enum LoginErrors {
+// //     INCORECT_DATA = '',
+// //     SERVER_ERROR = '',
+// // }
+// // eslint-disable-next-line max-len
+// export const loginByUsername = createAsyncThunk<User, loginByUsernameProps, { rejectValue: string, extra: ThunkExtraArg }>(
 //     'login/loginByUsername',
-//     async (authData, thunkAPI) => {
+//     async (authData, { dispatch, extra }) => {
 //         try {
+//             extra.navigate;
 //             const response = await axios.post<User>(
 //                 'http://localhost:8000/login',
 //                 authData,
 //             );
+
 //             if (!response.data) {
 //                 throw new Error();
 //             }
@@ -39,14 +46,16 @@ export const loginApi = rtkApi.injectEndpoints({
                 url: '/login',
                 method: 'POST',
                 body: args,
+
             }),
 
             // Task как правильно обработать ошибку
-            // async onQueryStarted(body, { dispatch, queryFulfilled }) {
-            //     queryFulfilled.then((result) => {
-            //         localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(result));
-            //     }).catch((err) => console.log(err));
-            // },
+            async onQueryStarted(body, { dispatch, queryFulfilled, extra }) {
+                queryFulfilled.then((data) => {
+                    localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(data.data));
+                    dispatch(userActions.setAuthData(data.data));
+                }).catch((err) => console.log(err));
+            },
 
         }),
     }),
