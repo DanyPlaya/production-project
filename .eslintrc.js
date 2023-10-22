@@ -33,6 +33,7 @@ module.exports = {
         'react/function-component-definition': 'off',
         'no-shadow': 'off',
         'no-tabs': 0,
+        'jsx-quotes': 'off',
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
@@ -42,6 +43,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'arrow-body-style': 'off',
         'no-param-reassign': 'off',
+        'comma-dangle': 'off',
         'i18next/no-literal-string': ['error', {
             markupOnly: true,
             ignoreAttribute: ['data-testid', 'to'],
