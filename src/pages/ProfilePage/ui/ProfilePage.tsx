@@ -21,24 +21,26 @@ interface ProfilePageProps {
 const initialReducers: ReducerList = {
     profile: profileReducer,
 };
-const ProfilePage: React.FC<ProfilePageProps> = memo(({ className }) => {
-    const { t } = useTranslation();
-    // const dispatch = useAppDispatch();
-    // useEffect(() => {
-    //     dispatch(fetchProfileDataThunk());
-    // });
-    const { data, isLoading, refetch } = useFetchProfileQuery();
-    useEffect(() => {
-        refetch();
-    }, [refetch]);
+const ProfilePage: React.FC<ProfilePageProps> = memo(
+    ({ className }: ProfilePageProps) => {
+        const { t } = useTranslation();
+        // const dispatch = useAppDispatch();
+        // useEffect(() => {
+        //     dispatch(fetchProfileDataThunk());
+        // });
+        const { data, isLoading, refetch } = useFetchProfileQuery();
+        useEffect(() => {
+            refetch();
+        }, [refetch]);
 
-    return (
-        <DyncamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-            <div className={classNames('cls.ProfilePage', {}, [className])}>
-                <ProfileCard />
-            </div>
-        </DyncamicModuleLoader>
-    );
-});
+        return (
+            <DyncamicModuleLoader removeAfterUnmount reducers={initialReducers}>
+                <div className={classNames('cls.ProfilePage', {}, [className])}>
+                    <ProfileCard />
+                </div>
+            </DyncamicModuleLoader>
+        );
+    }
+);
 
 export default ProfilePage;
