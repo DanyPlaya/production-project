@@ -9,15 +9,18 @@ import './shared/config/i18n/i18n';
 import 'app/styles/index.scss';
 
 const container = document.getElementById('root');
+if (!container) {
+    throw new Error('main contrainer not found');
+}
 const root = createRoot(container);
 root.render(
-    <ErrorBoundary fallback={<PageError />}>
-        <BrowserRouter>
-            <StoreProvider>
+    <BrowserRouter>
+        <StoreProvider>
+            <ErrorBoundary fallback={<PageError />}>
                 <ThemeProvider>
                     <App />
                 </ThemeProvider>
-            </StoreProvider>
-        </BrowserRouter>
-    </ErrorBoundary>
+            </ErrorBoundary>
+        </StoreProvider>
+    </BrowserRouter>
 );

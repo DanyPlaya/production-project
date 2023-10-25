@@ -35,6 +35,7 @@ module.exports = {
         'no-tabs': 0,
         'jsx-quotes': 'off',
         'import/extensions': 'off',
+        'no-undef': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
         'jsx-a11y/no-static-element-interactions': 'off',
@@ -43,6 +44,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'arrow-body-style': 'off',
         'no-param-reassign': 'off',
+        'object-curly-newline': 'off',
         'comma-dangle': 'off',
         'i18next/no-literal-string': ['error', {
             markupOnly: true,
@@ -56,6 +58,7 @@ module.exports = {
     },
     globals: {
         __IS_DEV__: true,
+        __API__: true
     },
     overrides: [
         {

@@ -20,66 +20,75 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Dark: Story = {
-    args: {
-
-    },
+    args: {},
     decorators: [
         (Story) => (
             <ThemeDecorator theme={Theme.DARK}>
-                <StoreDecorator state={{ loginForm: { username: 'Senez', password: 'Senez' } }}>
+                <StoreDecorator
+                    state={{
+                        loginForm: { username: 'Senez', password: 'Senez' },
+                    }}
+                >
                     <Story />
                 </StoreDecorator>
             </ThemeDecorator>
-
         ),
     ],
 };
 export const Primary: Story = {
-    args: {
-
-    },
+    args: {},
     decorators: [
         (Story) => (
             <ThemeDecorator theme={Theme.LIGHT}>
-                <StoreDecorator state={{ loginForm: { username: 'Senez', password: 'Senez' } }}>
+                <StoreDecorator
+                    state={{
+                        loginForm: { username: 'Senez', password: 'Senez' },
+                    }}
+                >
                     <Story />
                 </StoreDecorator>
             </ThemeDecorator>
-
         ),
     ],
 };
 export const WithError: Story = {
-    args: {
-    },
+    args: {},
     decorators: [
         (Story) => {
             return (
                 <ThemeDecorator theme={Theme.DARK}>
-                    <StoreDecorator state={{ loginForm: { username: 'Senez', password: 'Senez', error: 'Error' } }}>
+                    <StoreDecorator
+                        state={{
+                            loginForm: {
+                                error: 'Error',
+                            },
+                        }}
+                    >
                         <Story />
                     </StoreDecorator>
                 </ThemeDecorator>
             );
         },
-
     ],
 };
 
 export const Loading: Story = {
-    args: {
-
-    },
+    args: {},
     decorators: [
         (Story) => {
             return (
                 <ThemeDecorator theme={Theme.DARK}>
-                    <StoreDecorator state={{ loginForm: { isLoading: true } }}>
+                    <StoreDecorator
+                        state={{
+                            loginForm: {
+                                isLoading: true,
+                            },
+                        }}
+                    >
                         <Story />
                     </StoreDecorator>
                 </ThemeDecorator>
             );
         },
-
     ],
 };

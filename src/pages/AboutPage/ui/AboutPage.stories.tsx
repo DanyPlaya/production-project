@@ -7,22 +7,17 @@ const meta = {
     title: 'pages/AboutPage',
     component: AboutPage,
     tags: ['autodocs'],
-    argTypes: {
-
-    },
+    argTypes: {},
 } satisfies Meta<typeof AboutPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-    args: {
-    },
-
+    args: {},
 };
 export const Dark: Story = {
-    args: {
-    },
+    args: {},
     decorators: [
         (Story) => (
             <ThemeDecorator theme={Theme.DARK}>
@@ -30,5 +25,4 @@ export const Dark: Story = {
             </ThemeDecorator>
         ),
     ],
-
 };

@@ -60,9 +60,11 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             .unwrap()
             .then(() => {
                 navigate('/profile');
-                onSuccess();
+                onSuccess?.();
+            })
+            .catch((e) => {
+                console.log(e);
             });
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [login, navigate, onSuccess, password, username]);
 
@@ -79,14 +81,14 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                 <Input
                     autoFocus
                     onChange={onChangeUsername}
-                    placeholder={t('Введите логин')}
+                    placeholder={t('Введите логин')!}
                     className={cls.input}
                     value={username}
                 />
                 <Input
                     onChange={onChangePassword}
                     autoFocus
-                    placeholder={t('Введите пароль')}
+                    placeholder={t('Введите пароль')!}
                     className={cls.input}
                     value={password}
                     type='password'

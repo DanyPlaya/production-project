@@ -1,15 +1,23 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
-    ChangeEvent, InputHTMLAttributes, memo, useEffect, useRef, useState,
+    ChangeEvent,
+    InputHTMLAttributes,
+    memo,
+    useEffect,
+    useRef,
+    useState,
 } from 'react';
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+type HTMLInputProps = Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'value' | 'onChange'
+>;
 interface InputProps extends HTMLInputProps {
     className?: string;
     value?: string;
     onChange?: (value: string) => void;
-    autoFocus?: boolean
+    autoFocus?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -33,7 +41,7 @@ export const Input = memo((props: InputProps) => {
     useEffect(() => {
         if (autoFocus) {
             setIsFocused(true);
-            ref.current.focus();
+            ref?.current?.focus();
         }
     }, [autoFocus]);
     const onBlur = () => {
@@ -48,9 +56,7 @@ export const Input = memo((props: InputProps) => {
     return (
         <div className={classNames(cls.InputWrapper, {}, [className])}>
             {placeholder && (
-                <div className={cls.placeholder}>
-                    {`${placeholder}>`}
-                </div>
+                <div className={cls.placeholder}>{`${placeholder}>`}</div>
             )}
             <div className={cls.caretWrapper}>
                 <input
@@ -63,7 +69,6 @@ export const Input = memo((props: InputProps) => {
                     onFocus={onFocus}
                     onSelect={onSelect}
                     {...otherProps}
-
                 />
                 {isFocused && (
                     <span

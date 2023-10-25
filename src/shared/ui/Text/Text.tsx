@@ -4,19 +4,17 @@ import cls from './Text.module.scss';
 
 export enum TextTheme {
     PRIMARY = 'primary',
-    ERROR = 'error'
+    ERROR = 'error',
 }
 interface TextProps {
     className?: string;
-    title?: string;
-    text?: string;
-    theme?: TextTheme
+    title?: string | null;
+    text?: string | null;
+    theme?: TextTheme;
 }
 
 export const Text = memo((props: TextProps) => {
-    const {
-        className, text, title, theme = TextTheme.PRIMARY,
-    } = props;
+    const { className, text, title = '', theme = TextTheme.PRIMARY } = props;
     const mods: Record<string, boolean> = {
         [cls[theme]]: true,
     };
